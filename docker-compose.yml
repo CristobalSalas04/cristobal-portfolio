@@ -1,0 +1,77 @@
+services:
+  react:
+    stdin_open: true
+    container_name: react
+    build: ./react
+    volumes:
+     - ./workDir/frontend:/var/www/frontend/:cached
+    ports:
+      - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - network_infrastructure
+#    command: npm start
+  MongoDB:
+    image: mongo
+    container_name: mongo_database
+    ports:
+      - "8081:8081"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    volumes:
+      - /var/lib/mongodb/
+    networks:
+      - network_infrastructure
+#  MySQLDB:
+#    image: mysql
+#    container_name: mysql_database
+#    command: [ "--default-authentication-plugin=mysql_native_password" ]
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: p
+#      MYSQL_DATABASE: mysqlDb
+#      MYSQL_USER: mysqlDbUser
+#      MYSQL_PASSWORD: p
+#    volumes:
+#      - /var/lib/mysql/
+#    networks:
+#      - network_infrastructure
+  symfony:
+    build: ./symfony
+    container_name: symfony
+    command: php -S 0.0.0.0:9001 -t public
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./workDir/backend/:/var/www/symfony:cached
+      - ./workDir/backend/logs:/var/www/symfony/logs:cached
+    links:
+      - MongoDB
+#      - MySQLDB
+#    extra_hosts:
+#      - "docker-host.localhost:127.0.0.1"
+    networks:
+      - network_infrastructure
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    environment:
+      NGINX_SYMFONY_SERVER_NAME: ${NGINX_SYMFONY_SERVER_NAME}
+    links:
+      - symfony
+      - react
+    volumes:
+      - ./workDir/backend/:/var/www/symfony:cached
+      - ./workDir/frontend/:/var/www/frontend:cached
+      - ./workDir/logs/:/var/log/nginx:cached
+    networks:
+      - network_infrastructure
+networks:
+  network_infrastructure:
+    name: network_infrastructure

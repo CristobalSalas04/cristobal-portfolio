@@ -1,0 +1,1 @@
+2026/04/27 19:40:24 [emerg] 1#1: host not found in upstream "symfony:9001" in /etc/nginx/conf.d/php-upstream.conf:2
