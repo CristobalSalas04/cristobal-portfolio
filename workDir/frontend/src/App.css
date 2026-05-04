@@ -36,3 +36,49 @@
     transform: rotate(360deg);
   }
 }
+
+.menu-button {
+ border-radius:  0 !important;
+ padding: 0% !important;
+}
+
+.glitch-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-icon i:first-child {
+  position: relative;
+  z-index: 3; 
+  color: white;
+}
+
+
+.glitch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-button:hover .glitch-icon .layer1 {
+  opacity: 1;
+  color: cyan;
+  filter: saturate(4);
+  transform: translate(-2px, -1px);
+
+}
+
+.menu-button:hover .glitch-icon .layer2 {
+  opacity: 1;
+  color: red;
+  filter: saturate(4);
+  transform: translate(2px, 1px);
+
+}
+
+.HeroMenu {
+  padding-right: calc(var(--bs-gutter-x) * 0.3) !important;
+  margin-top: calc(var(--bs-gutter-y)* 0.3) !important;
+}

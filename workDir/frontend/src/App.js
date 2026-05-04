@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import HeroMenu from './components/HeroMenu.js'
 
-import MenuPrincipal from './components/MenuPrincipal';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
   return (
@@ -20,10 +21,7 @@ function App() {
         >
           Learn React
         </a>
-        <div className="container mt-5">
-          <h1>test2</h1>
-          <MenuPrincipal />
-        </div>
+        <HeroMenu />
       </header>
     </div>
   );
