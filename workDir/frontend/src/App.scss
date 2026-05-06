@@ -1,0 +1,223 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.glitch-icon {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.glitch-icon i:first-child {
+  position: relative;
+  z-index: 3; 
+  color: white;
+}
+
+
+.glitch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.menu-button {
+  background-color: #34393e !important;
+  position: relative; 
+  border-color: #00000000 !important;
+  border-radius: 0 !important;
+  padding: 0% !important;
+  overflow: hidden; 
+}
+
+
+.menu-button:hover .menu-button-bg{
+  position: absolute; 
+  top:0; left:0; right:0; bottom: 1.5em;
+  
+  border-radius: 0%;
+  background-image: radial-gradient(circle, #529ecab4 3px, transparent 1px);
+  background-size: 12px 12px;
+
+  mask-image: radial-gradient(circle,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 99%, rgba(0, 0, 0, 0) 100%);
+
+  pointer-events: none; 
+  z-index: 0;
+  animation: glow 2.5s infinite ease-in-out;
+}
+
+@keyframes glow {
+  0% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.2);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.menu-button:hover {
+  transition: 0s !important;
+  background-color: #336795 !important;
+
+}
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.menu-button::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  padding: 2px;
+
+  background:
+  conic-gradient(
+    from var(--angle),
+
+    rgba(90,242,252,0) 0deg,
+    rgba(90,242,252,0.9) 30deg,
+    rgba(90,242,252,0.9) 60deg,
+    rgba(90,242,252,0.9) 90deg,
+    rgba(90,242,252,0) 120deg,
+
+    rgba(90,242,252,0) 180deg,
+    rgba(90,242,252,0.9) 210deg,
+    rgba(90,242,252,0.9) 240deg,
+    rgba(90,242,252,0.9) 270deg,
+    rgba(90,242,252,0) 300deg,
+
+    rgba(90,242,252,0) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  animation: rotateBorder 4s linear infinite;
+
+  opacity: 0;
+}
+.menu-button:hover::before {
+  opacity: 1;
+}
+@keyframes rotateBorder {
+  from {
+    --angle: 0deg;
+  }
+
+  to {
+    --angle: 360deg;
+  }
+}
+.glitch-icon {
+  bottom: 0.2rem;
+  filter: brightness(1.5);
+  mix-blend-mode: color-dodge;
+}
+
+
+.menu-button:hover .glitch-icon .layer1 {
+  opacity: 1;
+  color: #00ffff;
+
+  --glitch-transform: translate(-1px, -0.5px);
+
+  animation: glitchReturn 60s infinite ease-in-out;
+}
+
+.menu-button:hover .glitch-icon .layer2 {
+  opacity: 1;
+  color: #ff0000;
+
+  --glitch-transform: translate(2.5px, 2px);
+
+  animation: glitchReturn 60s infinite ease-in-out;
+}
+
+.menu-button:hover .glitch-icon .layer3 {
+  opacity: 1;
+  color: yellow;
+
+  --glitch-transform: translate(1px, 0.25px);
+
+  animation: glitchReturn 60s infinite ease-in-out;
+}
+.menu-button > span {
+  position: relative;
+  bottom: 5px; 
+}
+
+@keyframes glitchReturn {
+  0% {
+    transform: var(--glitch-transform);
+  }
+
+  50% {
+    transform: translate(0px, 0px);
+  }
+
+  100% {
+    transform: var(--glitch-transform);
+  }
+}
+
+.HeroMenuCol {
+  padding-right: calc(var(--bs-gutter-x) * 0.3) !important;
+  padding-left: calc(var(--bs-gutter-x) * 0.3) !important;
+  padding-bottom: calc(1.5rem * 0.3) !important;
+  padding-top: calc(1.5rem * 0.3) !important;
+}
+.HeroMenu {
+  background-color: rgba(255, 255, 255, 0.11);
+}
+

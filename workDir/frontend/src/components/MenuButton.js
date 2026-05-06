@@ -42,7 +42,8 @@ function MenuButton({ texto, link, icono }) {
         className="menu-button d-flex flex-column align-items-center"
         onMouseEnter={startRandomGlitch}
         onMouseLeave={stopRandomGlitch}
-    >
+    >   <div className="menu-button-bg"></div>
+    
         <GlitchIcon icono={icono} glitchRef={glitch.ref} />
 
         <span>{texto}</span>

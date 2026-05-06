@@ -7,13 +7,13 @@ function HeroMenu() {
   return (
     <Container className='HeroMenu'>
       <Row>
-        <Col> <MenuButton texto="Inicio" link="/" icono="bi bi-house-door-fill" /> </Col>
-        <Col> <MenuButton texto="Inicio" link="/" icono="bi bi-house" /> </Col>
+        <Col className='HeroMenuCol'> <MenuButton texto="Inicio" link="/" icono="bi bi-house-door-fill" /> </Col>
+        <Col className='HeroMenuCol'> <MenuButton texto="Inicio" link="/" icono="bi bi-house" /> </Col>
       </Row>
       <Row>
-        <Col> <MenuButton texto="Inicio" link="/" icono="bi bi-house" /> </Col>
-        <Col> <MenuButton texto="Inicio" link="/" icono="bi bi-house" /> </Col>
-        <Col> <MenuButton texto="Inicio" link="/" icono="bi bi-house" /> </Col>
+        <Col className='HeroMenuCol'> <MenuButton texto="Inicio" link="/" icono="bi bi-house" /> </Col>
+        <Col className='HeroMenuCol'> <MenuButton texto="Inicio" link="/" icono="bi bi-house" /> </Col>
+        <Col className='HeroMenuCol'> <MenuButton texto="Inicio" link="/" icono="bi bi-house" /> </Col>
       </Row>
     </Container>
   );

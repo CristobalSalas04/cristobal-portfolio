@@ -7,6 +7,7 @@ const GlitchIcon = ({ icono, size = "32px", glitchRef}) => {
 
       <i className={`${icono} glitch-layer layer1`} style={{ fontSize: size }}></i>
       <i className={`${icono} glitch-layer layer2`} style={{ fontSize: size }}></i>
+      <i className={`${icono} glitch-layer layer3`} style={{ fontSize: size }}></i>
     </div>
   );
 };
