@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -59,7 +55,13 @@
   opacity: 0;
   pointer-events: none;
 }
-
+.animBorder {
+  display: block !important;
+  width: 100%;
+}
+.gradient-border {
+  width: 100%;
+}
 
 .menu-button {
   background-color: #34393e !important;
@@ -103,62 +105,8 @@
 .menu-button:hover {
   transition: 0s !important;
   background-color: #336795 !important;
-
 }
-@property --angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-.menu-button::before {
-  content: "";
 
-  position: absolute;
-  inset: 0;
-
-  padding: 2px;
-
-  background:
-  conic-gradient(
-    from var(--angle),
-
-    rgba(90,242,252,0) 0deg,
-    rgba(90,242,252,0.9) 30deg,
-    rgba(90,242,252,0.9) 60deg,
-    rgba(90,242,252,0.9) 90deg,
-    rgba(90,242,252,0) 120deg,
-
-    rgba(90,242,252,0) 180deg,
-    rgba(90,242,252,0.9) 210deg,
-    rgba(90,242,252,0.9) 240deg,
-    rgba(90,242,252,0.9) 270deg,
-    rgba(90,242,252,0) 300deg,
-
-    rgba(90,242,252,0) 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  animation: rotateBorder 4s linear infinite;
-
-  opacity: 0;
-}
-.menu-button:hover::before {
-  opacity: 1;
-}
-@keyframes rotateBorder {
-  from {
-    --angle: 0deg;
-  }
-
-  to {
-    --angle: 360deg;
-  }
-}
 .glitch-icon {
   bottom: 0.2rem;
   filter: brightness(1.5);
@@ -193,6 +141,7 @@
   animation: glitchReturn 60s infinite ease-in-out;
 }
 .menu-button > span {
+  -webkit-text-stroke: 0.2px black;
   position: relative;
   bottom: 5px; 
 }
@@ -210,6 +159,252 @@
     transform: var(--glitch-transform);
   }
 }
+.neighborRight .menu-button::before {
+
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      to left,
+      rgba(90,242,252,0.0) 0%,
+      #33679538 65%,
+      #336795b9 75%,
+      #336795b9 100%
+    );
+
+  animation: sideGlowRight 2s linear infinite;
+}
+
+.neighborLeft .menu-button::before {
+
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(90,242,252,0.0) 0%,
+      #33679538 65%,
+      #336795b9 75%,
+      #336795b9 100%
+    );
+
+  animation: sideGlowLeft 2s linear infinite;
+}
+
+.neighborTop .menu-button::before {
+
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(90,242,252,0.0) 0%,
+      #33679538 65%,
+      #336795b9 75%,
+      #336795b9 100%
+    );
+
+  animation: sideGlowTop 2s linear infinite;
+}
+
+.neighborBottom .menu-button::before {
+
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(90,242,252,0.0) 0%,
+      #33679538 65%,
+      #336795b9 75%,
+      #336795b9 100%
+    );
+
+  animation: sideGlowBottom 2s linear infinite;
+}
+
+@keyframes sideGlowRight {
+
+  0% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+
+  50% {
+    filter: blur(12px);
+    opacity: 1;
+  }
+
+  100% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sideGlowLeft {
+
+  0% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+
+  50% {
+    filter: blur(12px);
+    opacity: 1;
+  }
+
+  100% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sideGlowTop {
+
+  0% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+
+  50% {
+    filter: blur(12px);
+    opacity: 1;
+  }
+
+  100% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sideGlowBottom {
+
+  0% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+
+  50% {
+    filter: blur(12px);
+    opacity: 1;
+  }
+
+  100% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+}
+.borderWrapper {
+  position: relative;
+}
+
+.borderWrapper[class*="neighbor"] svg {
+  filter: brightness(0.5);
+}
+
+.neighborLeft svg {
+
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 65%,
+      white 85%,
+      white 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 65%,
+      white 85%,
+      white 100%
+    );
+}
+
+.neighborRight svg {
+  -webkit-mask-image:
+    linear-gradient(
+      to left,
+      transparent 0%,
+      transparent 65%,
+      white 85%,
+      white 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to left,
+      transparent 0%,
+      transparent 65%,
+      white 85%,
+      white 100%
+    );
+}
+.neighborTop svg {
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 35%,
+      white 65%,
+      white 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 35%,
+      white 65%,
+      white 100%
+    );
+}
+
+.neighborBottom svg {
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      white 0%,
+      white 35%,
+      transparent 65%,
+      transparent 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      white 0%,
+      white 35%,
+      transparent 65%,
+      transparent 100%
+    );
+}
 
 .HeroMenuCol {
   padding-right: calc(var(--bs-gutter-x) * 0.3) !important;
@@ -217,7 +412,25 @@
   padding-bottom: calc(1.5rem * 0.3) !important;
   padding-top: calc(1.5rem * 0.3) !important;
 }
+
 .HeroMenu {
-  background-color: rgba(255, 255, 255, 0.11);
+  background-color: #333333;
 }
 
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-fluid, .row, .col {
+  height: 100%;
+  width: auto !important;
+}
