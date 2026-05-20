@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.scss';
 import HeroMenu from './components/HeroMenu.js'
+import HeroContainer from './components/HeroContainer.js'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -16,11 +17,10 @@ function App() {
     switch(activeContent) {
       case 'inicio':
         return (
-          <div>
-            <h2>Bienvenido a mi sitio</h2>
+          <HeroContainer title="Bienvenido a mi sitio">
             <p>Esta es la pagina principal para poner test test test test etst test est etest</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
+          </HeroContainer>
         );
       case 'proyectos':
         return (
@@ -94,32 +94,38 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Container fluid className="h-100">
-        <Row className="py-4 border-bottom">
-          <Col>
-            <h1>pagina web chad</h1>
-            <p className="lead">Bienvenido a mi sitio</p>
-          </Col>
-        </Row>
+   <div className="App">
+  <Container fluid className="min-vh-100 mainContainer d-flex flex-column">
+    {/* Header */}
+    <Row className="py-4 border-bottom">
+      <Col>
+        <h1>pagina web chad</h1>
+        <p className="lead">Bienvenido a mi sitio wep</p>
+      </Col>
+    </Row>
 
-        <Row className="flex-grow-1">
-          <Col md={8} className="p-4 contenido-principal">
-            {renderContent()}
-          </Col>
-          
-          <Col md={4} className="bg-dark p-3">
-            <HeroMenu onNavigate={setActiveContent} />
-          </Col>
-        </Row>
+    {/* Contenido principal - ocupa todo el ancho */}
+    <Row className="flex-grow-1">
+      <Col md={12} className="p-4 mainContent">
+        {renderContent()}
+      </Col>
+    </Row>
 
-        <Row className="py-3 border-top">
-          <Col className="text-center text-muted">
-            <small>Footer - 2056</small>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    {/* HeroMenu - centrado debajo del contenido */}
+    <Row className="py-4">
+      <Col md={12} className="d-flex justify-content-center">
+        <HeroMenu onNavigate={setActiveContent} />
+      </Col>
+    </Row>
+
+    {/* Footer */}
+    <Row className="py-3 border-top">
+      <Col className="text-center text-muted">
+        <small>pagina cristobal salas - 2056</small>
+      </Col>
+    </Row>
+  </Container>
+</div>
   );
 }
 

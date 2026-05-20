@@ -5,129 +5,115 @@ import Col from 'react-bootstrap/Col';
 import MenuButton from './MenuButton.js';
 import { GradientBorder } from 'react-gradient-borders';
 
-function HeroMenu() {
-
+function HeroMenu({ onNavigate }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const columns = 2;
+  const columns = 3;
 
   const buttons = [
-
     {
       texto: "Inicio",
-      link: "/",
+      navigation: {
+        type: "internal",
+        target: "inicio"
+      },
       icono: "bi bi-house-door-fill"
     },
-
     {
       texto: "Proyectos",
-      link: "/proyectos",
+      navigation: {
+        type: "internal",
+        target: "proyectos"
+      },
       icono: "bi bi-grid-fill"
     },
-
     {
       texto: "Perfil",
-      link: "/perfil",
+      navigation: {
+        type: "internal",
+        target: "perfil"
+      },
       icono: "bi bi-person-fill"
     },
-
     {
       texto: "Galería",
-      link: "/galeria",
+      navigation: {
+        type: "internal",
+        target: "galeria"
+      },
       icono: "bi bi-image-fill"
     },
-
     {
       texto: "Blog",
-      link: "/blog",
+      navigation: {
+        type: "internal",
+        target: "blog"
+      },
       icono: "bi bi-journal-richtext"
     },
-
     {
       texto: "Contacto",
-      link: "/contacto",
+      navigation: {
+        type: "internal",
+        target: "contacto"
+      },
       icono: "bi bi-envelope-fill"
-    },
+    }
   ];
+
   const borderProps = {
-
-    // Appearance
     colors: [
-      '#31c0e0',
-      '#31c0e0',
-      '#58f3ff',
-      '#31c0e0',
-      '#31c0e0',
-      '#58f3ff',
-      '#31c0e0',
-      '#31c0e0'
+      '#31c0e0', '#31c0e0', '#58f3ff', '#31c0e0',
+      '#31c0e0', '#58f3ff', '#31c0e0', '#31c0e0'
     ],
-
     strokeWidth: 2,
     borderRadius: 0,
     lineCapStart: "square",
     lineCapEnd: "square",
-
-    // Animation
     animate: true,
     duration: 5000,
     animationMode: "loop",
     variant: "default",
     reverse: false,
     startPosition: "top-left",
-
-    // Trigger
     trigger: "manual",
     showWhenInactive: false,
-
-    // Border Position
     borderPosition: "inner",
     borderOffset: 0,
-
-    // Ants
     ants: false,
     antsDashWidth: 20,
     antsGapWidth: 16,
     antsSpeed: 250,
-
-    // Performance
     lazy: true,
-
     lazyRootMargin: "100px",
     resizeThrottle: 150,
     segments: 300,
-
-    // Styling
     style: {},
     className: "animBorder",
   };
 
+  const getNavigationProps = (button) => {
+    if (button.navigation.type === 'internal' && onNavigate) {
+      return { 
+        onClick: () => onNavigate(button.navigation.target) 
+      };
+    } 
+    else if (button.navigation.type === 'external') {
+      return { 
+        href: button.navigation.target 
+      };
+    }
+    return {};
+  };
+
   const renderButton = (button, index) => {
-
-    const isMain =
-      hoveredIndex === index;
-
-    const isLeftNeighbor =
-      hoveredIndex === index + 1 &&
-      index % columns !== columns - 1;
-
-    const isRightNeighbor =
-      hoveredIndex === index - 1 &&
-      index % columns !== 0;
-
-    const isTopNeighbor =
-      hoveredIndex === index + columns;
-
-    const isBottomNeighbor =
-      hoveredIndex === index - columns;
+    const isMain = hoveredIndex === index;
+    const isLeftNeighbor = hoveredIndex === index + 1 && index % columns !== columns - 1;
+    const isRightNeighbor = hoveredIndex === index - 1 && index % columns !== 0;
+    const isTopNeighbor = hoveredIndex === index + columns;
+    const isBottomNeighbor = hoveredIndex === index - columns;
 
     return (
-      <Col
-        key={index}
-        md={12 / columns}
-        className='HeroMenuCol'
-      >
-
+      <Col key={index} md={12 / columns} className='HeroMenuCol'>
         <div
           className={`
             borderWrapper
@@ -139,21 +125,17 @@ function HeroMenu() {
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
-
           <GradientBorder
             {...borderProps}
             active={
-              isMain ||
-              isLeftNeighbor ||
-              isRightNeighbor ||
-              isTopNeighbor ||
-              isBottomNeighbor
+              isMain || isLeftNeighbor || isRightNeighbor ||
+              isTopNeighbor || isBottomNeighbor
             }
           >
             <MenuButton
               texto={button.texto}
-              link={button.link}
               icono={button.icono}
+              {...getNavigationProps(button)}
             />
           </GradientBorder>
         </div>
@@ -164,18 +146,10 @@ function HeroMenu() {
   return (
     <Container className='HeroMenu'>
       <Row>
-        {buttons.map((button, index) =>
-          renderButton(button, index)
-        )}
+        {buttons.map((button, index) => renderButton(button, index))}
       </Row>
     </Container>
   );
 }
-/*<Container className='HeroMenu'>
-      <Row>
-        {buttons.map((button, index) =>
-          renderButton(button, index)
-        )}
-      </Row>
-    </Container> <== en caso de poner el menu abajo*/
+
 export default HeroMenu;

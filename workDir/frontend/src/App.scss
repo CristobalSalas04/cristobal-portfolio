@@ -3,12 +3,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -33,391 +27,6 @@
   }
 }
 
-
-
-.glitch-icon {
-  position: relative;
-  display: inline-block;
-  isolation: isolate;
-}
-
-.glitch-icon i:first-child {
-  position: relative;
-  z-index: 3; 
-  color: white;
-}
-
-
-.glitch-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-.animBorder {
-  display: block !important;
-  width: 100%;
-}
-.gradient-border {
-  width: 100%;
-}
-
-.menu-button {
-  background-color: #34393e !important;
-  position: relative; 
-  border-color: #00000000 !important;
-  border-radius: 0 !important;
-  padding: 0% !important;
-  overflow: hidden; 
-}
-
-
-.menu-button:hover .menu-button-bg{
-  position: absolute; 
-  top:0; left:0; right:0; bottom: 1.5em;
-  
-  border-radius: 0%;
-  background-image: radial-gradient(circle, #529ecab4 3px, transparent 1px);
-  background-size: 12px 12px;
-
-  mask-image: radial-gradient(circle,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 99%, rgba(0, 0, 0, 0) 100%);
-
-  pointer-events: none; 
-  z-index: 0;
-  animation: glow 2.5s infinite ease-in-out;
-}
-
-@keyframes glow {
-  0% {
-    filter: brightness(1);
-  }
-
-  50% {
-    filter: brightness(1.2);
-  }
-
-  100% {
-    filter: brightness(1);
-  }
-}
-
-.menu-button:hover {
-  transition: 0s !important;
-  background-color: #336795 !important;
-}
-
-.glitch-icon {
-  bottom: 0.2rem;
-  filter: brightness(1.5);
-  mix-blend-mode: color-dodge;
-}
-
-
-.menu-button:hover .glitch-icon .layer1 {
-  opacity: 1;
-  color: #00ffff;
-
-  --glitch-transform: translate(-1px, -0.5px);
-
-  animation: glitchReturn 60s infinite ease-in-out;
-}
-
-.menu-button:hover .glitch-icon .layer2 {
-  opacity: 1;
-  color: #ff0000;
-
-  --glitch-transform: translate(2.5px, 2px);
-
-  animation: glitchReturn 60s infinite ease-in-out;
-}
-
-.menu-button:hover .glitch-icon .layer3 {
-  opacity: 1;
-  color: yellow;
-
-  --glitch-transform: translate(1px, 0.25px);
-
-  animation: glitchReturn 60s infinite ease-in-out;
-}
-.menu-button > span {
-  -webkit-text-stroke: 0.2px black;
-  position: relative;
-  bottom: 5px; 
-}
-
-@keyframes glitchReturn {
-  0% {
-    transform: var(--glitch-transform);
-  }
-
-  50% {
-    transform: translate(0px, 0px);
-  }
-
-  100% {
-    transform: var(--glitch-transform);
-  }
-}
-.neighborRight .menu-button::before {
-
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    linear-gradient(
-      to left,
-      rgba(90,242,252,0.0) 0%,
-      #33679538 65%,
-      #336795b9 75%,
-      #336795b9 100%
-    );
-
-  animation: sideGlowRight 2s linear infinite;
-}
-
-.neighborLeft .menu-button::before {
-
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    linear-gradient(
-      to right,
-      rgba(90,242,252,0.0) 0%,
-      #33679538 65%,
-      #336795b9 75%,
-      #336795b9 100%
-    );
-
-  animation: sideGlowLeft 2s linear infinite;
-}
-
-.neighborTop .menu-button::before {
-
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(90,242,252,0.0) 0%,
-      #33679538 65%,
-      #336795b9 75%,
-      #336795b9 100%
-    );
-
-  animation: sideGlowTop 2s linear infinite;
-}
-
-.neighborBottom .menu-button::before {
-
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(90,242,252,0.0) 0%,
-      #33679538 65%,
-      #336795b9 75%,
-      #336795b9 100%
-    );
-
-  animation: sideGlowBottom 2s linear infinite;
-}
-
-@keyframes sideGlowRight {
-
-  0% {
-    filter: blur(6px);
-    opacity: 0.4;
-  }
-
-  50% {
-    filter: blur(12px);
-    opacity: 1;
-  }
-
-  100% {
-    filter: blur(6px);
-    opacity: 0.4;
-  }
-}
-
-@keyframes sideGlowLeft {
-
-  0% {
-    filter: blur(6px);
-    opacity: 0.4;
-  }
-
-  50% {
-    filter: blur(12px);
-    opacity: 1;
-  }
-
-  100% {
-    filter: blur(6px);
-    opacity: 0.4;
-  }
-}
-
-@keyframes sideGlowTop {
-
-  0% {
-    filter: blur(6px);
-    opacity: 0.4;
-  }
-
-  50% {
-    filter: blur(12px);
-    opacity: 1;
-  }
-
-  100% {
-    filter: blur(6px);
-    opacity: 0.4;
-  }
-}
-
-@keyframes sideGlowBottom {
-
-  0% {
-    filter: blur(6px);
-    opacity: 0.4;
-  }
-
-  50% {
-    filter: blur(12px);
-    opacity: 1;
-  }
-
-  100% {
-    filter: blur(6px);
-    opacity: 0.4;
-  }
-}
-.borderWrapper {
-  position: relative;
-}
-
-.borderWrapper[class*="neighbor"] svg {
-  filter: brightness(0.5);
-}
-
-.neighborLeft svg {
-
-  -webkit-mask-image:
-    linear-gradient(
-      to right,
-      transparent 0%,
-      transparent 65%,
-      white 85%,
-      white 100%
-    );
-
-  mask-image:
-    linear-gradient(
-      to right,
-      transparent 0%,
-      transparent 65%,
-      white 85%,
-      white 100%
-    );
-}
-
-.neighborRight svg {
-  -webkit-mask-image:
-    linear-gradient(
-      to left,
-      transparent 0%,
-      transparent 65%,
-      white 85%,
-      white 100%
-    );
-
-  mask-image:
-    linear-gradient(
-      to left,
-      transparent 0%,
-      transparent 65%,
-      white 85%,
-      white 100%
-    );
-}
-.neighborTop svg {
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 35%,
-      white 65%,
-      white 100%
-    );
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 35%,
-      white 65%,
-      white 100%
-    );
-}
-
-.neighborBottom svg {
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      white 0%,
-      white 35%,
-      transparent 65%,
-      transparent 100%
-    );
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      white 0%,
-      white 35%,
-      transparent 65%,
-      transparent 100%
-    );
-}
-
-.HeroMenuCol {
-  padding-right: calc(var(--bs-gutter-x) * 0.3) !important;
-  padding-left: calc(var(--bs-gutter-x) * 0.3) !important;
-  padding-bottom: calc(1.5rem * 0.3) !important;
-  padding-top: calc(1.5rem * 0.3) !important;
-}
-
-.HeroMenu {
-  background-color: #333333;
-}
-
-
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -428,9 +37,297 @@ html, body, #root {
   height: auto;
   display: flex;
   flex-direction: column;
+  margin-right: 10% !important;
+  margin-left: 10% !important;
 }
+
 
 .container-fluid, .row, .col {
   height: 100%;
-  width: auto !important;
+}
+
+.HeroMenu {
+  width: 100vh !important;
+  height: 20vh !important;
+  background-color: #333333;
+  display: flex !important;
+}
+
+.HeroMenu .container,
+.HeroMenu .container-fluid,
+.HeroMenu .row {
+  height: 100%;
+  width: 100%;
+}
+
+.HeroMenu .row {
+  flex: 1;
+}
+
+.HeroMenuCol {
+  padding-right: calc(var(--bs-gutter-x) * 0.3) !important;
+  padding-left: calc(var(--bs-gutter-x) * 0.3) !important;
+  padding-bottom: calc(1.5rem * 0.3) !important;
+  padding-top: calc(1.5rem * 0.3) !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.borderWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.borderWrapper > div {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.gradient-border {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.animBorder {
+  display: block !important;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-button {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #34393e !important;
+  position: relative;
+  border-color: #00000000 !important;
+  border-radius: 0 !important;
+  padding: 0% !important;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.menu-button:hover .menu-button-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 1.5em;
+  border-radius: 0%;
+  background-image: radial-gradient(circle, #529ecab4 3px, transparent 1px);
+  background-size: 12px 12px;
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 99%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: glow 2.5s infinite ease-in-out;
+}
+
+@keyframes glow {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.menu-button:hover {
+  transition: 0s !important;
+  background-color: #336795 !important;
+}
+
+.menu-button > span {
+  -webkit-text-stroke: 0.2px black;
+  position: relative;
+  bottom: 5px;
+  font-size: 1rem;
+}
+
+.glitch-icon {
+  bottom: 0.2rem;
+  filter: brightness(1.5);
+  mix-blend-mode: color-dodge;
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.glitch-icon i:first-child {
+  position: relative;
+  z-index: 3;
+  color: white;
+}
+
+.glitch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-button:hover .glitch-icon .layer1 {
+  opacity: 1;
+  color: #00ffff;
+  --glitch-transform: translate(-1px, -0.5px);
+  animation: glitchReturn 60s infinite ease-in-out;
+}
+
+.menu-button:hover .glitch-icon .layer2 {
+  opacity: 1;
+  color: #ff0000;
+  --glitch-transform: translate(2.5px, 2px);
+  animation: glitchReturn 60s infinite ease-in-out;
+}
+
+.menu-button:hover .glitch-icon .layer3 {
+  opacity: 1;
+  color: yellow;
+  --glitch-transform: translate(1px, 0.25px);
+  animation: glitchReturn 60s infinite ease-in-out;
+}
+
+@keyframes glitchReturn {
+  0% {
+    transform: var(--glitch-transform);
+  }
+  50% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: var(--glitch-transform);
+  }
+}
+
+.neighborRight .menu-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(to left, rgba(90,242,252,0.0) 0%, #33679538 65%, #336795b9 75%, #336795b9 100%);
+  animation: sideGlowRight 2s linear infinite;
+}
+
+.neighborLeft .menu-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(to right, rgba(90,242,252,0.0) 0%, #33679538 65%, #336795b9 75%, #336795b9 100%);
+  animation: sideGlowLeft 2s linear infinite;
+}
+
+.neighborTop .menu-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(90,242,252,0.0) 0%, #33679538 65%, #336795b9 75%, #336795b9 100%);
+  animation: sideGlowTop 2s linear infinite;
+}
+
+.neighborBottom .menu-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(to top, rgba(90,242,252,0.0) 0%, #33679538 65%, #336795b9 75%, #336795b9 100%);
+  animation: sideGlowBottom 2s linear infinite;
+}
+
+@keyframes sideGlowRight {
+  0% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+  50% {
+    filter: blur(12px);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sideGlowLeft {
+  0% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+  50% {
+    filter: blur(12px);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sideGlowTop {
+  0% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+  50% {
+    filter: blur(12px);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sideGlowBottom {
+  0% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+  50% {
+    filter: blur(12px);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(6px);
+    opacity: 0.4;
+  }
+}
+
+.borderWrapper[class*="neighbor"] svg {
+  filter: brightness(0.5);
+}
+
+.neighborLeft svg {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 65%, white 85%, white 100%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 65%, white 85%, white 100%);
+}
+
+.neighborRight svg {
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, transparent 65%, white 85%, white 100%);
+  mask-image: linear-gradient(to left, transparent 0%, transparent 65%, white 85%, white 100%);
+}
+
+.neighborTop svg {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 35%, white 65%, white 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 35%, white 65%, white 100%);
+}
+
+.neighborBottom svg {
+  -webkit-mask-image: linear-gradient(to bottom, white 0%, white 35%, transparent 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, white 0%, white 35%, transparent 65%, transparent 100%);
 }

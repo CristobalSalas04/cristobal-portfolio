@@ -1,6 +1,6 @@
 import { useGlitch } from 'react-powerglitch';
 
-const GlitchIcon = ({ icono, size = "32px", glitchRef}) => {
+const GlitchIcon = ({ icono, size = "2rem", glitchRef}) => {
   return (
     <div className="glitch-icon" ref={glitchRef}>
       <i className={icono} style={{ fontSize: size }}></i>

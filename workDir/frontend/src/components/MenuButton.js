@@ -3,51 +3,59 @@ import { useRef } from 'react';
 import GlitchIcon from './glitchicon.js';
 import Button from 'react-bootstrap/Button';
 
-function MenuButton({ texto, link, icono }) {
+function MenuButton({ texto, onClick, href, icono }) {
   const glitch = useGlitch({ playMode: "manual" });
   const loopRef = useRef(null);
 
- const startRandomGlitch = () => {
-  const run = () => {
-    // ⏱ espera random ANTES del glitch
-    loopRef.current = setTimeout(() => {
-      
-      glitch.startGlitch();
+  const startRandomGlitch = () => {
+    const run = () => {
+      loopRef.current = setTimeout(() => {
+        glitch.startGlitch();
 
-      setTimeout(() => {
-        glitch.stopGlitch();
+        setTimeout(() => {
+          glitch.stopGlitch();
+          run();
+        }, 150);
 
-        // 🔁 vuelve a ejecutarse
-        run();
-
-      }, 150); // duración del glitch
-
-    }, Math.random() * 5000 + 1000); // delay inicial random
+      }, Math.random() * 5000 + 1000);
+    };
+    run();
   };
-
-  run();
-};
 
   const stopRandomGlitch = () => {
     glitch.stopGlitch();
-
     if (loopRef.current) {
       clearTimeout(loopRef.current);
     }
   };
 
-    return (
-    <Button
-        href={link}
-        className="menu-button d-flex flex-column align-items-center"
-        onMouseEnter={startRandomGlitch}
-        onMouseLeave={stopRandomGlitch}
-    >   <div className="menu-button-bg"></div>
-    
-        <GlitchIcon icono={icono} glitchRef={glitch.ref} />
+  const handleClick = (e) => {
+    if (onClick) {
+      e.preventDefault();
+      onClick();
+    } else if (!href) {
+      e.preventDefault();
+    }
+  };
 
-        <span>{texto}</span>
+  const buttonProps = {
+    className: "menu-button d-flex flex-column align-items-center",
+    onMouseEnter: startRandomGlitch,
+    onMouseLeave: stopRandomGlitch,
+    onClick: handleClick
+  };
+
+  if (href && !onClick) {
+    buttonProps.href = href;
+  }
+
+  return (
+    <Button {...buttonProps}>
+      <div className="menu-button-bg"></div>
+      <GlitchIcon icono={icono} glitchRef={glitch.ref} />
+      <span>{texto}</span>
     </Button>
-    );
+  );
 }
+
 export default MenuButton;
