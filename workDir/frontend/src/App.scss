@@ -340,6 +340,7 @@ html, body, #root {
 }
 
 .hero-container {
+  overflow-y: auto !important;
   border: 2px solid #58f3ff;
   box-shadow: 0px 0px 30px 3px #58f4ff21;
   background-color: #34393e8a !important;
@@ -350,9 +351,13 @@ html, body, #root {
   
   .hero-content {
     transition: opacity 0.1s ease;
+    overflow-y: auto;
   }
 }
-
+.hero-container-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
 .animate-out .hero-container {
   -webkit-animation: scale-in-ver-bottom 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   animation: scale-in-ver-bottom 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -466,11 +471,16 @@ html, body, #root {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
+
   background-color: #336795 !important;
-  position: relative;
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
   overflow: hidden;
   padding: 1rem;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -478,14 +488,27 @@ html, body, #root {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: radial-gradient(circle, #529ecab4 3px, transparent 1px);
+
+    background-image:
+      radial-gradient(circle, #529ecab4 3px, transparent 1px);
+
     background-size: 12px 12px;
+
     pointer-events: none;
     z-index: 0;
+
     animation: glow 2.5s infinite ease-in-out;
-     mask-image: radial-gradient(circle,rgba(0, 0, 0, 0) 17%, rgba(0, 0, 0, 0.29) 47%, rgba(0, 0, 0, 1) 81%, rgba(0, 0, 0, 0.32) 100%);
+
+    mask-image:
+      radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0) 17%,
+        rgba(0, 0, 0, 0.29) 47%,
+        rgba(0, 0, 0, 1) 81%,
+        rgba(0, 0, 0, 0.32) 100%
+      );
   }
-  
+
   .hero-icon,
   .hero-title {
     position: relative;
@@ -601,5 +624,264 @@ html, body, #root {
   .hero-title {
     position: relative;
     z-index: 1;
+  }
+}
+
+/* Contenedor de la lista de items - SCROLLABLE */
+.item-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Personalizar barra de scroll */
+.item-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.item-wrapper::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.item-wrapper::-webkit-scrollbar-thumb {
+  background: #2d5278;
+  border-radius: 4px;
+}
+
+.item-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #30789a;
+}
+
+/* Cada ItemDisplay individual */
+.item-display {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0px !important;
+  background: rgba(255, 255, 255, 0.123) !important;
+  transition: all 0.1s ease;
+  text-align: left !important;
+}
+
+.item-display:hover {
+  background: #2d5278 !important;
+  border: 1px solid #30789a !important;
+}
+
+/* Contenedor interno que pone left y right lado a lado */
+.item-container {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0.50rem;
+  width: 100%;
+}
+
+/* Lado izquierdo (imagen y storage) */
+.item-left-wrapper {
+  width: 20% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px;
+}
+
+/* Lado derecho (nombre, stats, rareza) */
+.item-right-wrapper {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem;
+}
+
+/* Cabecera con nombre y rareza */
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* Separador decorativo del nombre */
+.item-separator {
+  background: #282c3485;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 15px) 0,
+    100% 30%,
+    100% 100%,
+    0 100%
+  );
+  padding: 2px 4px;
+  flex: 1;
+}
+
+/* Texto del nombre */
+.item-name {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  word-break: break-word;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Icono de rareza */
+.rarity-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  min-width: 26px;
+  height: 26px;
+}
+
+.rarity-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* Almacenamiento (storage) */
+.item-storage {
+  font-size: 0.85rem;
+  color: #ffd700;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 8px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.storage-text {
+  margin-left: 4px;
+}
+
+/* Wrapper de la imagen */
+.item-image-wrapper {
+  background: rgba(6, 255, 6, 0.2);
+  min-width: 64px;
+  min-height: 64px;
+  outline: #ffffff2a solid 3px;
+  padding: 8px;
+  margin-top: 0;
+}
+
+.item-image-wrapper img {
+  width: 100%;
+  height: auto;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+/* Stats */
+.item-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.item-stat {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.item-stat p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.item-rarity-badge {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Bordes por rareza */
+.rarity-common {
+  border-left: 1px solid #9e9e9e !important;
+}
+
+.rarity-rare {
+  border-left: 1px solid #4caf50 !important;
+}
+
+.rarity-epic {
+  border-left: 1px solid #9c27b0 !important;
+}
+
+.rarity-legendary {
+  border-left: 1px solid #ff9800 !important;
+}
+
+.rarity-mythic {
+  border-left: 1px solid #f44336 !important;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .item-display {
+    padding: 8px;
+  }
+  
+  .item-left-wrapper {
+    width: 30% !important;
+  }
+  
+  .item-name {
+    font-size: 0.75rem !important;
+  }
+  
+  .item-stat {
+    font-size: 0.7rem;
+  }
+  
+  .item-stat p {
+    font-size: 0.7rem;
+  }
+  
+  .item-separator {
+    padding: 4px 8px;
+  }
+  
+  .rarity-icon {
+    min-width: 22px;
+    height: 22px;
+  }
+  
+  .rarity-icon img {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .item-image-wrapper {
+    min-width: 48px;
+    min-height: 48px;
+  }
+  
+  .item-image-wrapper img {
+    max-height: 60px;
+  }
+}
+
+@media (min-width: 768px) {
+  .item-display {
+    transition: transform 0.15s ease, background 0.1s ease;
+  }
+  
+  .item-display:hover {
+    transform: translateX(4px);
   }
 }
